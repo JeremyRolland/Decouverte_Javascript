@@ -11,55 +11,57 @@
 
         /* Section 1 */   
 
-        var name = "Joe";
-        var city = 'London';
-        var age = 32;
-        var isRed = true;
-        var isOld = age > 80;
+        var name = "Joe"; //Déclaration variable name qui prend la valeur "Joe"
+        var city = 'London'; //Déclaration de la variable city qui prend la valeur "London"
+        var age = 32;   //Déclaration de la variable age qui prend la valeur "32"
+        var isRed = true;   //Déclaration de la variable isRed qui prend la valeur true
+        var isOld = age > 80;   //Déclaration de la variable isOld qui prend comme valeur le résultat du test age>80
 
-        var previousJobs = ['lawyer', 'developper', 'Professionnal climber'];
+        var previousJobs = ['lawyer', 'developper', 'Professionnal climber']; //Déclaration de la variable previousJobs qui représente un tableau à plusieurs valeurs
 
-        function info(height, weight) {
-            if (height > 180) {
-                console.log('Vous êtes grand');
+        function info(height, weight) { //Déclaration d'une fonction nommée info prenant comme paramètres d'entrée les variables heigth et weigth
+            if (height > 180) { //Test sur la valeur de heigth
+                console.log('Vous êtes grand'); //On affiche un message dans la console
             }
-            if (weight < 0) {
-                console.log('oups, there is a problem');
-            } else if ( weight < 15) {
-                console.log('Are you that slim ?')
-            } else {
-                console.log('Good !')
+            if (weight < 0) { //Test sur la valeur de weight
+                console.log('oups, there is a problem');    //On affiche un message dans la console
+            } else if ( weight < 15) {  //Si le premier test n'est pas vérifié on refait à nouveau un test sur la valeur de weigth
+                console.log('Are you that slim ?') //On affiche un message dans la console
+            } else {    //Exécution par défaut si aucun test n'a été validé
+                console.log('Good !') //On affiche un message dans la console
             }
         }
 
-        info(165, 45);
+        info(165, 45); //Appel de la fonction info avec comme paramètres des constantes
 
-        var myHeight = 175;
-        var myWeight = 86;
+        var myHeight = 175; //Déclaration variable myHeight qui prend la valeur 175
+        var myWeight = 86;  //Déclaration variable myWeight qui prend la valeur 86
 
-        info(myHeight, myWeight);
+        info(myHeight, myWeight);   //Appel de la fonction info avec comme paramètres la variables myHeight et myWeight
 
-        info(myHeight + 15, myWeight - 100);
+        info(myHeight + 15, myWeight - 100);    //Appel de la fonction info avec comme paramètres la variables myHeight et myWeigh auquels ont rajoute un offset
 
-        function toUpper(variable) {
-            return variable.toUpperCase();
+        function toUpper(variable) {    //Déclaration d'une fonction nommée toUpper prenant comme paramètres d'entrée la variable "variable"
+            return variable.toUpperCase();  //La fonction retourne "variable" auquel on applique la fonction toUpperCase() qui va modifier chaque caractère par son équivalent majuscule
         }
 
-        var upperName = toUpper(name);
+    var upperName = toUpper(name);  //Déclaration de la variable age qui prend en valeur le retour de la fonction toUpper avec en paramètre d'entrée la variable name
 
-        for (i = 0; i < 3; i = i + 1) {
-            console.log(previousJobs[i]);
+        for (i = 0; i < 3; i = i + 1) { //Initialisation d'une boucle for démarrant de 0 jusqu'à 3 par pas de 1
+            console.log(previousJobs[i]);   //On affiche un message dans la console
         }
 
         /* Section 2: */
 
         // afficher la ville dans laquele Joe vit.     
+        console.log(`Joe habite à ${city}`);
 
         // afficher si Joe est roux ou pas.
+        console.log(isRed ? 'Joe est roux' : 'Joe n\'est pas roux');
 
         /* Section 3 */
 
-        // console.log(myVariable);
+         console.log(myVariable); //On obitent une erreur car la variable "myVaraible" n'est pas déclarée dans notre code
 
         </script>
 
