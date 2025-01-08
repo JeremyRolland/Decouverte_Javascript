@@ -7,8 +7,57 @@
 
   <body>
     <div class="container">
-						<h1>Exercice 7</h1>
-				</div>
+    </div>    
+    <h1>Appliquer un filtre</h1>
+    <input type=""text" id="typeInput" placeholder="Saisir un type">
+    <button id="typeButton">Go</button>
+    <div>
+      <label for="stockCheckbox">Afficher seulement les objets disponibles</label>
+      <input type="checkbox" id="stockCheckbox" name="stockCheckbox">
+    </div>
+    <div>
+      <label for="listeFiltres">Filtrer la liste:</label>
+
+      <select name="listeFiltres" id="listeFiltres">
+        <option value="">--Sélection filtre--</option>
+        <option value="croissantAlphabetique">ordre alphabétique</option>
+        <option value="decroissantAlphabetique">alphabétique inversé</option>
+        <option value="croissantPrix">prix croissant</option>
+        <option value="decroissantPrix">prix décroissant</option>
+      </select>
+    </div>
+    <div>
+      <h1>Ajouter un article</h1>
+      <form action="" method="post" class="form-addArticle">
+        <div class="form-addArticle">
+          <label for="name">Entrer le nom: </label>
+          <input type="text" name="name" id="name" required />
+        </div>
+        <div class="form-addArticle">
+          <label for="type">Entrer le type: </label>
+          <input type="text" name="type" id="type" required />
+        </div>
+        <div class="form-addArticle">
+          <label for="description">Entrer la description: </label>
+          <input type="text" name="description" id="description" required />
+        </div>
+        <div class="form-addArticle">
+          <label for="price">Entrer le prix: </label>
+          <input type="text" name="price" id="price" required />
+        </div>
+        <div class="form-addArticle">
+          <label for="quantity">Entrer la quantité: </label>
+          <input type="text" name="quantity" id="quantity" required />
+        </div>
+        <div class="form-addArticle">
+          <input type="submit" id="submitButton" value="Ajouter l'article!" />
+        </div>
+      </form>
+    </div>
+
+    <div id="item-container"></div>
+    
+
     <script src="datas.js"></script>
     <script src="exo7.js"></script>
   </body>
