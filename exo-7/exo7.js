@@ -1,7 +1,32 @@
-for(let item of jsonDatas) {
-    console.log(item);
+//Restructurer les données
+function restructureData() {
+    return jsonDatas.reduce((acc, item) => {
+        let typeGroup = acc.find(group => group.type === item.type);
+        if (!typeGroup) {
+            typeGroup = {
+                type: item.type,
+                items: []
+            };
+            acc.push(typeGroup);
+        }
+        typeGroup.items.push({
+            name: item.name,
+            description: item.description,
+            price: item.price,
+            quantity: item.quantity,
+            contact: {
+                lastName: "Dubois",
+                firstName: "Martin",
+                address: "1 Grande Rue 74000 Annecy"
+            }
+        });
+        return acc;
+    }, []);
 }
 
+const restructuredData = restructureData(jsonDatas);
+
+//Déclaration tableau de traduciton des types
 const traductions = {
     car: "voiture",
     house: "maison",
@@ -10,21 +35,39 @@ const traductions = {
     show: "spectacle"
 };
 
-const itemContainer = document.getElementById('item-container');
-
 //Ajouter la traduction du type
-for(let item of jsonDatas) {
+for(let item of restructuredData) {
     item.traductionType = traductions[item.type];
 }
 
-display(jsonDatas);
+const itemContainer = document.getElementById('item-container');
+
+// Fonction d'affichage de la liste
+function display(objets) {
+    itemContainer.innerHTML = '';
+    for (let group of objets) {
+        for (let item of group.items) {
+            const itemElement = document.createElement('div');
+            itemElement.innerHTML = `
+            <h2>${item.name}</h2>
+            <p>Type: ${group.traductionType}</p>
+            <p>Description: ${item.description}</p>
+            <p>Prix: ${item.price}</p>
+            <p>Quantité: ${item.quantity}</p>
+            <p>Contact: ${item.contact.firstName} ${item.contact.lastName}, ${item.contact.address}</p>
+            `;
+            itemContainer.appendChild(itemElement);
+        }
+    }
+}
+
+display(restructuredData);
 
 //Gestion de la saisie du type pour filtrer sur traductionType
 const typeButton = document.getElementById('typeButton'); 
 typeButton.addEventListener('click', () => { 
     const typeInput = document.getElementById('typeInput').value;
-    const onlyType = jsonDatas.filter((el) => el.traductionType.toLowerCase().includes(typeInput.toLowerCase()));
-    console.log(onlyType);
+    const onlyType = restructuredData.filter((el) => el.traductionType.toLowerCase().includes(typeInput.toLowerCase()));
     display(onlyType);
 });
 
@@ -34,9 +77,9 @@ stockCheckbox.addEventListener('change', () => {
     const isChecked = stockCheckbox.checked;
     let filteredArticles;
     if (isChecked) {
-        filteredArticles = jsonDatas.filter((el) => el.quantity != 0);
+        filteredArticles = restructuredData.filter((el) => el.quantity != 0);
     } else {
-        filteredArticles = jsonDatas;
+        filteredArticles = restructuredData;
     }
     display(filteredArticles);
 });
@@ -79,23 +122,8 @@ submitButton.addEventListener('click', (event) => {
     const quantity = document.getElementById('quantity').value;
 
     jsonDatas.push({name, traductionType, description, price, quantity});
-    
+
     display(jsonDatas);
 });
 
 
-//fonction d'affichage de la liste
-function display(objets) {
-    itemContainer.innerHTML = '';
-    for(let objet of objets) {
-        const itemElement = document.createElement('div');
-        itemElement.innerHTML = `
-        <h2>${objet.name}</h2>
-        <p>Type: ${objet.traductionType}</p>
-        <p>Description: ${objet.description}</p>
-        <p>Prix: ${objet.price}</p>
-        <p>Quantité: ${objet.quantity}</p>
-        `;
-        itemContainer.appendChild(itemElement);
-    }
-}
