@@ -31,23 +31,44 @@ let team = {
         opponentPoints: 27
     }],
 
+    //Ajoute des joueurs
     addPlayer(firstName, lastName, age) {
         this.players.push({firstName, lastName, age});
     },
 
+    //Ajoute des parties
     addGames(opponent, teampPoints, opponentPoints) {
         this.games.push({opponent, teampPoints, opponentPoints});
     },
 
+    //Trouve le joueur le plus agé
     findOlderPlayer() {
-        let arrayAges = [];
-        for(let playerAge of this.players) {
-            arrayAges.push(playerAge.age)
+        let oldestPlayer = this.players[0]; // Initialiser avec le premier joueur
+        for(let player of this.players) {
+            if(player.age > oldestPlayer.age) {
+                oldestPlayer = player; // Mettre à jour si on trouve un joueur plus âgé
+            }
         }
-        console.log(arrayAges);
-        console.log(arrayAges.sort());
-        console.log(arrayAges[0]);
+        console.log(`Le joueur le plus âgé est ${oldestPlayer.firstName} ${oldestPlayer.lastName}, âgé de ${oldestPlayer.age} ans.`);
+    },
+
+    //Trie les jouers pas ordre alphabétique
+    sortPlayers() {
+        this.players.sort((a, b) => {
+            const nameA = a.firstName.toUpperCase(); // ignore upper and lowercase
+            const nameB = b.firstName.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+          
+            // names must be equal
+            return 0;
+        });
     }
+    
 
 }
 
@@ -71,3 +92,6 @@ const averageOpponentPoints = totalOpponentPoints / team.games.length;
 console.log(`Score moyen équipe adverse: ${averageOpponentPoints}.`);   //Affiche le score moyen des opposants
 
 team.findOlderPlayer();
+
+team.sortPlayers()
+console.log(team.players);
